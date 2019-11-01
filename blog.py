@@ -35,6 +35,12 @@ def login():
     
     return render_template('login.html', error=error), status_code
 
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('login'))
+
 @app.route('/main')
 def main():
     return render_template('main.html')
